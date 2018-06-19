@@ -1,0 +1,2 @@
+# StrutsTest
+a new readme
