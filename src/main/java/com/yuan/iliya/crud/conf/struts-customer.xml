@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <package name="customer" strict-method-invocation="false" extends="struts-default">
+        <global-results>
+            <result name="login">/crud/login.jsp</result>
+        </global-results>
+        <action name="customer_*" class="com.yuan.iliya.crud.action.CustomerAction" method="{1}">
+            <result name="listUI">/WEB-INF/crud/listUI.jsp</result>
+            <result name="editUI">/WEB-INF/crud/editUI.jsp</result>
+            <result name="addUI">/WEB-INF/crud/addUI.jsp</result>
+            <result name="success" type="redirectAction">customer_listUI</result>
+
+            <result name="list" type="redirectAction">customer_listUI</result>
+        </action>
+
+
+
+
+
+    </package>
+</struts>

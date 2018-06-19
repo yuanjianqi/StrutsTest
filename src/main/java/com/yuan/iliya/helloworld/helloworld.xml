@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <package name="helloworld" extends="struts-default">
+        <interceptors>
+            <interceptor name="login" class="com.yuan.iliya.interceptor.LoginCheckInterceptor">
+                <param name="sessionAttribute">login_user</param>
+                <param name="reloginResult">toLogin</param>
+            </interceptor>
+            <interceptor name="myInterceptor" class="com.yuan.iliya.interceptor.HelloworldInterceptor">
+                <param name="dbOrFile">file</param>
+            </interceptor>
+
+            <interceptor name="myLogger" class="com.yuan.iliya.interceptor.LoggerInterceptor"></interceptor>
+
+            <interceptor-stack name="myStack">
+                <interceptor-ref name="timer"></interceptor-ref>
+                <interceptor-ref name="defaultStack"></interceptor-ref>
+            </interceptor-stack>
+        </interceptors>
+        <default-interceptor-ref name="myStack"></default-interceptor-ref>
+        <!--<action name="login" class="com.yuan.iliya.helloworld.HelloworldAction" method="login">-->
+            <!--<result name="login" type="freemarker">welcome.ftl</result>-->
+        <!--</action>-->
+        <global-results>
+            <result name="toLogin">/helloworld/login.jsp</result>
+        </global-results>
+
+        <action name="login" class="com.yuan.iliya.helloworld.HelloworldAction" method="login">
+            <result name="login">/WEB-INF/helloworld/hello.jsp</result>
+            <!--<interceptor-ref name="myInterceptor">-->
+                <!--<param name="dbOrFile">db</param>-->
+            <!--</interceptor-ref>-->
+            <!--<interceptor-ref name="login"></interceptor-ref>-->
+            <interceptor-ref name="myStack"/>
+            <interceptor-ref name="myLogger"/>
+
+        </action>
+
+    </package>
+
+
+</struts>
